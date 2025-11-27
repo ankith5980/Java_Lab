@@ -2,22 +2,21 @@
 
 package Program4;
 
-// Basic demo: inheritance, super, abstract, final
 public class InhDemo {
     public static void main(String[] args) {
-        System.out.println("--- Inheritance & super demo ---");
+        System.out.println("Inheritance & super keyword demo");
         Dog d = new Dog("Buddy", 5);
         d.speak();
         d.showInfo();
 
         System.out.println();
-        System.out.println("--- Abstract class demo ---");
+        System.out.println("Abstract class demo");
         Shape c = new Circle(3.0);
         c.draw();
         System.out.println("Area: " + c.area());
 
         System.out.println();
-        System.out.println("--- final keyword demo ---");
+        System.out.println("final keyword demo");
         FinalClass fc = new FinalClass();
         fc.showFinal();
         System.out.println("(Trying to extend a final class or override a final method will cause a compile-time error.)");
@@ -58,7 +57,7 @@ class Dog extends Animal {
     }
 }
 
-// Abstract class example
+// Abstract class 
 abstract class Shape {
     public abstract void draw();
     public abstract double area();
@@ -80,7 +79,7 @@ class Circle extends Shape {
     }
 }
 
-// Final class and final method example
+// Final class and final method
 final class FinalClass {
     public final void showFinal() { System.out.println("Final method in final class."); }
 }
