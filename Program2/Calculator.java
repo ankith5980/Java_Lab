@@ -5,7 +5,7 @@
 // Create objects for both the constructors and use the Overloaded methods.
 
 package Program2;
-class Calculator {
+public class Calculator {
     public int a;
     public int b;
 
