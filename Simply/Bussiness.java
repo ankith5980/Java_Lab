@@ -4,6 +4,7 @@
 // 2. Calculate loss percentage (Given cost price and selling price)
 // 3. Calculate price after discount (Given marked price and discount percentage)
 // 4. Calculate Simple Interest (Given principal amount, rate of interest and time)
+// Use function overloading to implement the 'calculate' method for each of the above operations.
 
 package Simply;
 
@@ -15,15 +16,15 @@ public class Bussiness {
 
     // Method to calculate loss percentage
     public double calculateLossPercentage(double costPrice, double sellingPrice) {
-        if (sellingPrice >= costPrice) {
-            return 0.0;
+        if (costPrice <= sellingPrice) {
+            return 0.0; // No loss
         }
         double loss = costPrice - sellingPrice;
         return (loss / costPrice) * 100;
     }
 
     // Method to calculate price after discount
-    public double calculatePriceAfterDiscount(double markedPrice, double discountPercentage) {
+    public double calculate(double markedPrice, int discountPercentage) {
         double discountAmount = (discountPercentage / 100) * markedPrice;
         return markedPrice - discountAmount;
     }
@@ -45,7 +46,7 @@ public class Bussiness {
         System.out.println("Loss Percentage: " + lossPercentage + "%");
 
         // Calculate price after discount
-        double priceAfterDiscount = bussiness.calculatePriceAfterDiscount(10000, 15);
+        double priceAfterDiscount = bussiness.calculate(10000, 15);
         System.out.println("Price after Discount: " + priceAfterDiscount);
 
         // Calculate Simple Interest
