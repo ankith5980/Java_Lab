@@ -1,89 +1,58 @@
 // Implement the concept of inheritance, super keyword, abstract class and final keyword.
+// Create an abstract class vehicle with an attribute brand, a constructor to set the attribute,
+// an abstract method to start and a concrete method fuelType. [final method]
+// Create a subclass car with attribute speed that extends vehicle, Uses the super keyword
+// to access the parent constructor and overrides the strat method.
+// Use the final keyword to prevent method overriding in the final type method.
 
 package Program4;
 
+// 1. Abstract Class: Cannot be instantiated directly
+abstract class Vehicle {
+    String brand;
+
+    // Constructor to set the attribute
+    Vehicle(String brand) {
+        this.brand = brand;
+    }
+
+    // Abstract Method: No body, must be implemented by subclass
+    abstract void start();
+
+    // 2. Final Method: Cannot be overridden by subclasses
+    final void fuelType() {
+        System.out.println("Standard Fuel Type: Petrol/Diesel/Electric");
+    }
+}
+
+// 3. Inheritance: Car inherits from Vehicle
+class Car extends Vehicle {
+    int speed;
+
+    Car(String brand, int speed) {
+        // 4. Super Keyword: Calls the constructor of the parent class
+        super(brand); 
+        this.speed = speed;
+    }
+
+    // Overriding the abstract method from parent
+    @Override
+    void start() {
+        System.out.println("The " + brand + " is starting and can reach speeds of " + speed + " km/h.");
+    }
+    
+    // Note: Trying to override fuelType() here would cause a compilation error
+    // because it is marked as 'final' in the parent class.
+}
+
+// Main class to test the implementation
 public class InhDemo {
     public static void main(String[] args) {
-        System.out.println("Inheritance & super keyword demo");
-        Dog d = new Dog("Buddy", 5);
-        d.speak();
-        d.showInfo();
+        // Creating an object of the subclass
+        Car myCar = new Car("Toyota", 180);
 
-        System.out.println();
-        System.out.println("Abstract class demo");
-        Shape c = new Circle(3.0);
-        c.draw();
-        System.out.println("Area: " + c.area());
-
-        System.out.println();
-        System.out.println("final keyword demo");
-        FinalClass fc = new FinalClass();
-        fc.showFinal();
-        System.out.println("(Trying to extend a final class or override a final method will cause a compile-time error.)");
+        // Calling methods
+        myCar.start();      // Calls the overridden method in Car
+        myCar.fuelType();   // Calls the final concrete method in Vehicle
     }
 }
-
-// Simple parent class to demonstrate inheritance and super
-class Animal {
-    protected String name;
-    protected int age;
-
-    public Animal(String name, int age) {
-        this.name = name;
-        this.age = age;
-        System.out.println("Animal constructor called");
-    }
-
-    public void speak() {
-        System.out.println(name + " makes a sound.");
-    }
-}
-
-// Subclass demonstrating use of super to call parent constructor and methods
-class Dog extends Animal {
-    public Dog(String name, int age) {
-        super(name, age); // call parent constructor
-        System.out.println("Dog constructor called");
-    }
-
-    @Override
-    public void speak() {
-        super.speak(); // call parent method
-        System.out.println(name + " barks.");
-    }
-
-    public void showInfo() {
-        System.out.println("Dog name: " + name + ", age: " + age);
-    }
-}
-
-// Abstract class 
-abstract class Shape {
-    public abstract void draw();
-    public abstract double area();
-}
-
-class Circle extends Shape {
-    private double radius;
-
-    public Circle(double r) { this.radius = r; }
-
-    @Override
-    public void draw() {
-        System.out.println("Drawing a circle with radius " + radius);
-    }
-
-    @Override
-    public double area() {
-        return Math.PI * radius * radius;
-    }
-}
-
-// Final class and final method
-final class FinalClass {
-    public final void showFinal() { System.out.println("Final method in final class."); }
-}
-
-// The following would be a compile-time error because FinalExample is final:
-// class FinalChild extends FinalExample { }
-
